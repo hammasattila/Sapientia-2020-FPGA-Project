@@ -3,7 +3,7 @@
 -- Engineer: Attila Hammas
 -- 
 -- Create Date: 12/02/2020 08:24:20 AM
--- Module Name: generator - Behavioral
+-- Module Name: Generator - Behavioral
 -- Project Name:  Waweform generator
 --
 -- Revision 0.01 - File Created
@@ -45,7 +45,7 @@ architecture Behavioral of Generator is
     type LUT is array (NATURAL range 0 to LUT_SIZE - 1) of STD_LOGIC_VECTOR(LUT_WIDTH - 1 downto 0);
     constant sinLUT : LUT := (STD_LOGIC_VECTOR(to_unsigned(127, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(152, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(176, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(198, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(217, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(233, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(245, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(252, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(255, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(252, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(245, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(233, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(217, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(198, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(176, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(152, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(127, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(102, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(78, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(56, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(37, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(21, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(9, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(2, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(0, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(2, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(9, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(21, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(37, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(56, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(78, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(102, LUT_WIDTH)));    
 
-    type STATE is (READY, SPEED, PHASE, MEM, AMPLITUDE, OFFSET, PRINT, FINISH);
+    type STATE is (READY, SPEED_AMPLITUDE, PHASE_OFFSET, MEM_PRINT, FINISH);
     signal rState, rStateNext     : STATE := READY;
 
     signal rCounter, rCounterNext : STD_LOGIC_VECTOR(LUT_ADDRESS_WIDTH - 1 downto 0) := (others => '0');
@@ -67,16 +67,13 @@ begin
     StateLogic: process(rState, start)
     begin
         case (rState) is
-        when READY  =>  if start = '1' then rStateNext <= SPEED;
+        when READY  =>  if start = '1' then rStateNext <= SPEED_AMPLITUDE;
                         else rStateNext <= READY;
                         end if;
-        when SPEED      =>  rStateNext <= PHASE;
-        when PHASE      =>  rStateNext <= MEM;
-        when MEM        =>  rStateNext <= AMPLITUDE;
-        when AMPLITUDE  =>  rStateNext <= OFFSET;
-        when OFFSET     =>  rStateNext <= PRINT;
-        when PRINT      =>  rStateNext <= FINISH;
-        when FINISH     =>  rStateNext <= SPEED;
+        when SPEED_AMPLITUDE      =>  rStateNext <= PHASE_OFFSET;
+        when PHASE_OFFSET      =>  rStateNext <= MEM_PRINT;
+        when MEM_PRINT        =>  rStateNext <= FINISH;
+        when FINISH     =>  rStateNext <= SPEED_AMPLITUDE;
         end case;
     end process StateLogic;
 
@@ -91,7 +88,7 @@ begin
         end if;
     end process CounterRegister;
     
-    with rState select rCounterNext <=  std_logic_vector(to_unsigned(to_integer(unsigned(rCounter)) + 1, rCounterNext'length)) when FINISH,
+    with rState select rCounterNext <=  std_logic_vector(to_unsigned(to_integer(unsigned(rCounter)) + 1, rCounterNext'length)) when MEM_PRINT,
                                         rCounter when others;
     
     
@@ -105,8 +102,8 @@ begin
         end if;
     end process AddressRegister;
     
-    with rState select rAddressNext <=  std_logic_vector(to_unsigned(to_integer(unsigned(rCounter)) * to_integer(unsigned(a)), rAddressNext'length)) when SPEED,
-                                        std_logic_vector(to_unsigned(to_integer(unsigned(rAddress)) + to_integer(signed(teta)), rAddressNext'length)) when PHASE,
+    with rState select rAddressNext <=  std_logic_vector(to_unsigned(to_integer(unsigned(rCounter)) * to_integer(unsigned(a)), rAddressNext'length)) when SPEED_AMPLITUDE,
+                                        std_logic_vector(to_unsigned(to_integer(unsigned(rAddress)) + to_integer(signed(teta)), rAddressNext'length)) when PHASE_OFFSET,
                                         rAddress when others;
 
 
@@ -121,10 +118,9 @@ begin
         end if;
     end process DataRegister;
     
-    with rState select rDataNext <= (DATA_WIDTH - 1 downto LUT_WIDTH => '0') &  sinLUT(to_integer(UNSIGNED(rAddress))) when MEM,
-                                    std_logic_vector(to_unsigned(to_integer(unsigned(rData)) * to_integer(unsigned(amp)), rDataNext'length)) when AMPLITUDE,
-                                    --to_integer(unsigned(teta))
-                                    std_logic_vector(to_unsigned(to_integer(unsigned(rData)) + to_integer(signed(off)), rDataNext'length)) when OFFSET,
+    with rState select rDataNext <= (DATA_WIDTH - 1 downto LUT_WIDTH => '0') &  sinLUT(to_integer(UNSIGNED(rAddress))) when MEM_PRINT,
+                                    std_logic_vector(to_unsigned(to_integer(unsigned(rData)) * to_integer(unsigned(amp)), rDataNext'length)) when SPEED_AMPLITUDE,
+                                    std_logic_vector(to_unsigned(to_integer(unsigned(rData)) + to_integer(signed(off)), rDataNext'length)) when PHASE_OFFSET,
                                     rData when others;
                                     
     OutRegister : process(src_clk, src_ce, reset)
@@ -136,7 +132,7 @@ begin
         end if;
     end process OutRegister;
     
-    with rState select rOutNext <= rData when PRINT,
+    with rState select rOutNext <= rData when MEM_PRINT,
                                    rOut when others;
     
     with rState select status <= '1' when FINISH,

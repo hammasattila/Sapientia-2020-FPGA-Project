@@ -58,10 +58,14 @@
    <wvobject type="other" fp_name="/Generator_tb/stop_the_clock">
       <obj_property name="ElementShortName">stop_the_clock</obj_property>
       <obj_property name="ObjectShortName">stop_the_clock</obj_property>
+      <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject type="other" fp_name="/Generator_tb/clock_period">
       <obj_property name="ElementShortName">clock_period</obj_property>
       <obj_property name="ObjectShortName">clock_period</obj_property>
+      <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject type="other" fp_name="/Generator_tb/uut/rState">
       <obj_property name="ElementShortName">rState</obj_property>

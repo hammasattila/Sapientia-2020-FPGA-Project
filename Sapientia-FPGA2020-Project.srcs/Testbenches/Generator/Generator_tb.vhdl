@@ -1,18 +1,11 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
+-- Company: Sapientia Hungarian University of Transylvania - Faculty of Technical and Human Sciences
+-- Engineer: Attila Hammas
+--
 -- Create Date: 12/02/2020 04:05:22 PM
--- Design Name: 
 -- Module Name: Generator_tb - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
--- 
--- Dependencies: 
--- 
--- Revision:
+-- Project Name:  Waweform generator
+--
 -- Revision 0.01 - File Created
 -- Additional Comments:
 -- 
@@ -104,7 +97,7 @@ begin
     wait for clock_period / 2;
     reset <= '0';
     a <= std_logic_vector(to_unsigned(1, A_WIDTH));
-    teta <= std_logic_vector(to_signed(0, TETA_WIDTH));
+    teta <= std_logic_vector(to_signed(-5, TETA_WIDTH));
     amp <= std_logic_vector(to_unsigned(5, AMP_WIDTH));
     off <= std_logic_vector(to_signed(0, OFF_WIDTH));
     wait for clock_period / 2;
