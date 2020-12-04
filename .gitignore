@@ -1,0 +1,12 @@
+# Ignore everything
+*
+
+# But not these files...
+!*/
+!*.xpr
+!*.vhdl
+!*.wcfg
+
+!*.drawio
+!*.md
+!.gitignore
