@@ -17,8 +17,6 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
-
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_SIGNED.ALL;
@@ -27,6 +25,9 @@ use IEEE.NUMERIC_STD.all;
 
 
 entity Spi is
+    generic (
+        CE                : STD_LOGIC := '1';
+        RST               : STD_LOGIC := '0');
     Port ( src_clk : in STD_LOGIC;
            src_ce  : in STD_LOGIC; 
            reset   : in STD_LOGIC;
@@ -97,16 +98,16 @@ begin
      
     StateRegister: process(src_clk, src_ce, reset)
     begin
-        if  reset = '1' then
+        if  reset = RST then
             stateCurrent <= READY;
-        elsif src_ce = '1' and rising_edge(src_clk) then
+        elsif src_ce = CE and rising_edge(src_clk) then
             stateCurrent <= stateNext;
         end if;
     end process StateRegister;
     
     IRegister: process(src_clk, src_ce, reset)
     begin
-        if src_ce = '1' and rising_edge(src_clk) then
+        if src_ce = CE and rising_edge(src_clk) then
             rI <= rINext;
         end if;
     end process IRegister;
@@ -117,7 +118,7 @@ begin
                                    
     KRegister: process(src_clk, src_ce, reset)
     begin
-        if  src_ce = '1' and rising_edge(src_clk) then
+        if  src_ce = CE and rising_edge(src_clk) then
             rK <= rKNext;
         end if;
     end process KRegister;  
@@ -129,14 +130,14 @@ begin
 
     DataRegister: process(src_clk, src_ce, reset)
     begin
-        if  reset = '1' then
+        if  reset = RST then
             rData <= (others => '0');
             rDataNext <= (others => '0');
         else
-            if src_ce = '1' and rising_edge(src_clk) then
+            if src_ce = CE and rising_edge(src_clk) then
                 rData <= rDataNext;
             end if;
-            if src_ce = '1' and falling_edge(src_clk) then
+            if src_ce = CE and falling_edge(src_clk) then
                 if INIT_A = stateCurrent then
                     rDataNext <= data;
                 elsif INIT_C = stateCurrent then
@@ -153,14 +154,14 @@ begin
 
     ResponseRegister: process(src_clk, src_ce, reset)
     begin
-        if  reset = '1' then
+        if  reset = RST then
             rRes <= (others => '0');
             rResNext <= (others => '0');
         else
-            if src_ce = '1' and rising_edge(src_clk) then
+            if src_ce = CE and rising_edge(src_clk) then
                 rRes <= rResNext;
             end if;
-            if src_ce = '1' and falling_edge(src_clk) then
+            if src_ce = CE and falling_edge(src_clk) then
                 if INIT_A = stateCurrent then
                     rResNext <= (others => '0');
                 elsif CLK_L = stateCurrent then
