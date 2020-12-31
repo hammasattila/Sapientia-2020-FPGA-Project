@@ -54,7 +54,7 @@ architecture Behavioral of System is
       div_clk : out STD_LOGIC);
   end component;
 
-  component Generator
+  component GeneratorLUT
     generic (
       CE                : STD_LOGIC := '1';
       RST               : STD_LOGIC := '0';
@@ -115,7 +115,7 @@ begin
     reset   => reset,
     div_clk => gen_clk);
 
-  genc : Generator
+  genc : GeneratorLUT
   generic map(
     DATA_WIDTH        => DATA_WIDTH,
     A_WIDTH           => A_WIDTH,

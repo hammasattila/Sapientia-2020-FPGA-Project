@@ -17,7 +17,7 @@ use IEEE.NUMERIC_STD.all;
 use IEEE.STD_LOGIC_UNSIGNED.all;
 --use IEEE.STD_LOGIC_ARITH.ALL;
 
-entity Generator is
+entity GeneratorLUT is
     generic (
         CE                : STD_LOGIC := '1';
         RST               : STD_LOGIC := '0';
@@ -40,9 +40,9 @@ entity Generator is
         off     : in STD_LOGIC_VECTOR(OFF_WIDTH - 1 downto 0);
         status  : out STD_LOGIC;
         output  : out STD_LOGIC_VECTOR(15 downto 0));
-end Generator;
+end GeneratorLUT;
 
-architecture Behavioral of Generator is
+architecture Behavioral of GeneratorLUT is
     -- sinLUT az generálva
     type LUT is array (NATURAL range 0 to LUT_SIZE - 1) of STD_LOGIC_VECTOR(LUT_WIDTH - 1 downto 0);
     constant sinLUT : LUT := (STD_LOGIC_VECTOR(to_unsigned(127, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(152, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(176, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(198, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(217, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(233, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(245, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(252, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(255, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(252, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(245, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(233, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(217, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(198, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(176, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(152, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(127, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(102, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(78, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(56, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(37, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(21, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(9, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(2, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(0, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(2, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(9, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(21, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(37, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(56, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(78, LUT_WIDTH)), STD_LOGIC_VECTOR(to_unsigned(102, LUT_WIDTH)));
