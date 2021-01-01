@@ -31,7 +31,7 @@ architecture bench of Generator_tb is
   constant LUT_SIZE          : NATURAL := 2 ** LUT_ADDRESS_WIDTH;
   constant LUT_WIDTH         : NATURAL := 8;
 
-  component Generator
+  component GeneratorLUT
     generic (
       CE                : STD_LOGIC := '1';
       RST               : STD_LOGIC := '0';
@@ -73,7 +73,7 @@ architecture bench of Generator_tb is
 begin
 
   -- Insert values for generic parameters !!
-  uut : Generator generic map(
+  uut : GeneratorLUT generic map(
     DATA_WIDTH        => DATA_WIDTH,
     A_WIDTH           => A_WIDTH,
     TETA_WIDTH        => TETA_WIDTH,
