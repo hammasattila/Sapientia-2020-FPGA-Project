@@ -38,7 +38,8 @@ entity GeneratorTri is
         teta    : in STD_LOGIC_VECTOR(TETA_WIDTH - 1 downto 0);
         amp     : in STD_LOGIC_VECTOR(AMP_WIDTH - 1 downto 0);
         off     : in STD_LOGIC_VECTOR(OFF_WIDTH - 1 downto 0);
-        dout    : out STD_LOGIC_VECTOR (15 downto 0));
+        status  : out STD_LOGIC;
+        dout    : out STD_LOGIC_VECTOR (DATA_WIDTH - 1 downto 0));
 end GeneratorTri;
 
 architecture Behavioral of GeneratorTri is
@@ -48,10 +49,9 @@ architecture Behavioral of GeneratorTri is
     signal rState, rStateNext     : STATE;
     signal rPhase, rPhaseNext     : PHASE;
 
-    signal rCounter, rCounterNext : STD_LOGIC_VECTOR(7 downto 0);
-    signal rI, rINext, rN         : STD_LOGIC_VECTOR(7 downto 0);
-    signal rData, rDataNext       : STD_LOGIC_VECTOR(15 downto 0);
-    signal mult1, mult2           : STD_LOGIC_VECTOR(15 downto 0);
+    signal rCounter, rCounterNext : STD_LOGIC_VECTOR(TETA_WIDTH - 1 downto 0);
+    signal rI, rINext, rN         : STD_LOGIC_VECTOR(TETA_WIDTH - 1 downto 0);
+    signal rData, rDataNext       : STD_LOGIC_VECTOR(DATA_WIDTH - 1 downto 0);
 
 begin
 
@@ -70,10 +70,14 @@ begin
                 if start = '1' then rStateNext <= PHASE_AMPLITUDE;
                 else rStateNext                <= READY;
                 end if;
-            when PHASE_AMPLITUDE => rStateNext <= PHASE_OFFSET;
-            when PHASE_OFFSET    => rStateNext    <= CALC_PRINT;
-            when CALC_PRINT      => rStateNext      <= FINISH;
-            when FINISH          => rStateNext          <= PHASE_AMPLITUDE;
+            when PHASE_AMPLITUDE =>
+            rStateNext <= PHASE_OFFSET;
+            when PHASE_OFFSET    =>
+            rStateNext    <= CALC_PRINT;
+            when CALC_PRINT      =>
+            rStateNext      <= FINISH;
+            when FINISH          =>
+             rStateNext          <= PHASE_AMPLITUDE;
         end case;
     end process StateLogic;
 
@@ -124,7 +128,7 @@ begin
         else STD_LOGIC_VECTOR(to_unsigned(to_integer(unsigned(rI)) * to_integer(unsigned(d1)), rDataNext'length)) when rState = CALC_PRINT and rPhase = UP
         -- else (rN - rI) * d2 when rState = READY and rPhase = DOWN
         else STD_LOGIC_VECTOR(to_unsigned((to_integer(unsigned(rN)) - to_integer(unsigned(rI))) * to_integer(unsigned(d2)), rDataNext'length)) when rState = CALC_PRINT and rPhase = DOWN
-        else STD_LOGIC_VECTOR(to_unsigned(to_integer(unsigned(rData)) * to_integer(unsigned(amp)), rDataNext'length)) when rState = PHASE_AMPLITUDE
+        else (to_integer(UNSIGNED(amp)) - 1 downto 0 => '0') & rData(DATA_WIDTH - 1 downto to_integer(UNSIGNED(amp))) when rState = PHASE_AMPLITUDE
         else STD_LOGIC_VECTOR(to_unsigned(to_integer(unsigned(rData)) + to_integer(signed(off)), rDataNext'length)) when rState = PHASE_OFFSET
         else rData;
 
@@ -134,5 +138,8 @@ begin
         if rising_edge(src_clk) then dout <= rData;
         end if;
     end process RegisterOut;
+    
+    with rState select status <= '1' when FINISH,
+    '0' when others;
 
 end Behavioral;

@@ -10,15 +10,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="166666fs"></ZoomStartTime>
-      <ZoomEndTime time="1166667fs"></ZoomEndTime>
-      <Cursor1Time time="1000000fs"></Cursor1Time>
+      <ZoomStartTime time="1666833333fs"></ZoomStartTime>
+      <ZoomEndTime time="11667833334fs"></ZoomEndTime>
+      <Cursor1Time time="10001000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="223"></NameColumnWidth>
-      <ValueColumnWidth column_width="139"></ValueColumnWidth>
+      <ValueColumnWidth column_width="135"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="23" />
+   <WVObjectSize size="19" />
    <wvobject type="logic" fp_name="/System_tb/src_clk">
       <obj_property name="ElementShortName">src_clk</obj_property>
       <obj_property name="ObjectShortName">src_clk</obj_property>
@@ -60,22 +60,6 @@
       <obj_property name="ElementShortName">gen_clk</obj_property>
       <obj_property name="ObjectShortName">gen_clk</obj_property>
    </wvobject>
-   <wvobject type="other" fp_name="/System_tb/uut/genc/rState">
-      <obj_property name="ElementShortName">rState</obj_property>
-      <obj_property name="ObjectShortName">rState</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/System_tb/uut/genc/rCounter">
-      <obj_property name="ElementShortName">rCounter[4:0]</obj_property>
-      <obj_property name="ObjectShortName">rCounter[4:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/System_tb/uut/genc/rAddress">
-      <obj_property name="ElementShortName">rAddress[4:0]</obj_property>
-      <obj_property name="ObjectShortName">rAddress[4:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/System_tb/uut/genc/rData">
-      <obj_property name="ElementShortName">rData[15:0]</obj_property>
-      <obj_property name="ObjectShortName">rData[15:0]</obj_property>
-   </wvobject>
    <wvobject type="logic" fp_name="/System_tb/uut/gen_status">
       <obj_property name="ElementShortName">gen_status</obj_property>
       <obj_property name="ObjectShortName">gen_status</obj_property>
@@ -84,8 +68,8 @@
       <obj_property name="ElementShortName">gen_data[15:0]</obj_property>
       <obj_property name="ObjectShortName">gen_data[15:0]</obj_property>
       <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
-      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
-      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogYRangeMin">356.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">1940.000000</obj_property>
       <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
       <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
       <obj_property name="AnalogHorizLine">0.000000</obj_property>
@@ -93,6 +77,7 @@
       <obj_property name="CustomSignalColor">#FFA500</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
       <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="other" fp_name="/System_tb/uut/spic/stateCurrent">
       <obj_property name="ElementShortName">stateCurrent</obj_property>
@@ -127,19 +112,21 @@
       <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
       <obj_property name="CustomSignalColor">#A52A2A</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/System_tb/spi_value">
       <obj_property name="ElementShortName">spi_value[15:0]</obj_property>
       <obj_property name="ObjectShortName">spi_value[15:0]</obj_property>
       <obj_property name="CellHeight">100</obj_property>
-      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_FIXED</obj_property>
       <obj_property name="AnalogYRangeMin">0.000000</obj_property>
-      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">4096.000000</obj_property>
       <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
       <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
       <obj_property name="AnalogHorizLine">0.000000</obj_property>
       <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
       <obj_property name="CustomSignalColor">#00FFFF</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
 </wave_config>

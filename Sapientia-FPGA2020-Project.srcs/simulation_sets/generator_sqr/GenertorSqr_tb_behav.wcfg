@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="GenertorSqr_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="GenertorSqr_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="16000001fs"></ZoomEndTime>
+      <Cursor1Time time="16000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="223"></NameColumnWidth>
+      <ValueColumnWidth column_width="131"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="16" />
+   <wvobject type="logic" fp_name="/GenertorSqr_tb/src_clk">
+      <obj_property name="ElementShortName">src_clk</obj_property>
+      <obj_property name="ObjectShortName">src_clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/GenertorSqr_tb/src_ce">
+      <obj_property name="ElementShortName">src_ce</obj_property>
+      <obj_property name="ObjectShortName">src_ce</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/GenertorSqr_tb/start">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/GenertorSqr_tb/reset">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/GenertorSqr_tb/k1">
+      <obj_property name="ElementShortName">k1[7:0]</obj_property>
+      <obj_property name="ObjectShortName">k1[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/GenertorSqr_tb/k2">
+      <obj_property name="ElementShortName">k2[7:0]</obj_property>
+      <obj_property name="ObjectShortName">k2[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/GenertorSqr_tb/teta">
+      <obj_property name="ElementShortName">teta[7:0]</obj_property>
+      <obj_property name="ObjectShortName">teta[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/GenertorSqr_tb/amp">
+      <obj_property name="ElementShortName">amp[11:0]</obj_property>
+      <obj_property name="ObjectShortName">amp[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/GenertorSqr_tb/off">
+      <obj_property name="ElementShortName">off[11:0]</obj_property>
+      <obj_property name="ObjectShortName">off[11:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/GenertorSqr_tb/status">
+      <obj_property name="ElementShortName">status</obj_property>
+      <obj_property name="ObjectShortName">status</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/GenertorSqr_tb/dout">
+      <obj_property name="ElementShortName">dout[11:0]</obj_property>
+      <obj_property name="ObjectShortName">dout[11:0]</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/GenertorSqr_tb/stop_the_clock">
+      <obj_property name="ElementShortName">stop_the_clock</obj_property>
+      <obj_property name="ObjectShortName">stop_the_clock</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/GenertorSqr_tb/clock_period">
+      <obj_property name="ElementShortName">clock_period</obj_property>
+      <obj_property name="ObjectShortName">clock_period</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/GenertorSqr_tb/uut/rState">
+      <obj_property name="ElementShortName">rState</obj_property>
+      <obj_property name="ObjectShortName">rState</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/GenertorSqr_tb/uut/rPhase">
+      <obj_property name="ElementShortName">rPhase</obj_property>
+      <obj_property name="ObjectShortName">rPhase</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/GenertorSqr_tb/uut/rI">
+      <obj_property name="ElementShortName">rI[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rI[7:0]</obj_property>
+   </wvobject>
+</wave_config>

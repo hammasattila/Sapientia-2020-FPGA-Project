@@ -20,20 +20,13 @@ end;
 architecture bench of System_tb is
 
   component System
-    generic (
-      DATA_WIDTH        : NATURAL := 16;
-      A_WIDTH           : NATURAL := 4;
-      TETA_WIDTH        : NATURAL := 4;
-      AMP_WIDTH         : NATURAL := 4;
-      OFF_WIDTH         : NATURAL := 16;
-      LUT_ADDRESS_WIDTH : NATURAL := 5;
-      LUT_WIDTH         : NATURAL := 8
-    );
     port (
       src_clk      : in STD_LOGIC;
       src_ce       : in STD_LOGIC;
       reset        : in STD_LOGIC;
       start        : in STD_LOGIC;
+      s            : in STD_LOGIC_VECTOR(1 downto 0);
+      teta    : in STD_LOGIC_VECTOR(7 downto 0);
       out_spi_sck  : out STD_LOGIC;
       out_spi_miso : in STD_LOGIC;
       out_spi_mosi : out STD_LOGIC;
@@ -45,6 +38,8 @@ architecture bench of System_tb is
   signal src_ce            : STD_LOGIC;
   signal reset             : STD_LOGIC;
   signal start             : STD_LOGIC;
+  signal s                 : STD_LOGIC_VECTOR(1 downto 0);
+  signal teta    : STD_LOGIC_VECTOR(7 downto 0);
   signal out_spi_sck       : STD_LOGIC;
   signal out_spi_miso      : STD_LOGIC;
   signal out_spi_mosi      : STD_LOGIC;
@@ -52,25 +47,19 @@ architecture bench of System_tb is
 
   signal stimulated_output : STD_LOGIC_VECTOR (15 downto 0) := (others => '0');
   signal spi_value         : STD_LOGIC_VECTOR (15 downto 0) := (others => '0');
-  constant clock_period    : TIME                           := 10 ps;
+  constant clock_period    : TIME                           := 50 ns;
   signal stop_the_clock    : BOOLEAN;
 
 begin
 
   -- Insert values for generic parameters !!
-  uut : System generic map(
-    DATA_WIDTH        => 16,
-    A_WIDTH           => 4,
-    TETA_WIDTH        => 4,
-    AMP_WIDTH         => 4,
-    OFF_WIDTH         => 16,
-    LUT_ADDRESS_WIDTH => 5,
-    LUT_WIDTH         => 8)
-  port map(
+  uut : System port map(
     src_clk      => src_clk,
     src_ce       => src_ce,
     reset        => reset,
     start        => start,
+    s            => s,
+    teta => teta,
     out_spi_sck  => out_spi_sck,
     out_spi_miso => out_spi_miso,
     out_spi_mosi => out_spi_mosi,
@@ -88,12 +77,19 @@ begin
     reset <= '1';
 
     wait for clock_period / 2;
-    -- wait for 320 * clock_period;
-    -- start <= '0';
+    
+    s            <= "00";
+    teta         <= STD_LOGIC_VECTOR(to_signed(70, 8));
+    wait for 40000 * clock_period;
+    teta         <= STD_LOGIC_VECTOR(to_signed(0, 8));
+    wait for 40000 * clock_period;
+    s <= "01";
+    wait for 40000 * clock_period;
+    s <= "10";
+    wait for 40000 * clock_period;
+    s <= "11";
+    wait for 40000 * clock_period;
 
-    -- wait for 9800 * clock_period;
-    -- wait for 10000 * clock_period;
-    wait;
     reset <= '0';
     wait for 5 * clock_period;
 
@@ -121,7 +117,7 @@ begin
 
   process (out_spi_cs)
   begin
-    if rising_edge(out_spi_cs) then spi_value <= stimulated_output;
+    if rising_edge(out_spi_cs) and reset = '1' then spi_value <= stimulated_output;
     end if;
   end process;
 end;

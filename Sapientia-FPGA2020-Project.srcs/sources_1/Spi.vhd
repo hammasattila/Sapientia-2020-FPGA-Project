@@ -45,7 +45,7 @@ end Spi;
 
 architecture Behavioral of Spi is
     constant SPI_CLK_DIV    : NATURAL := 10;
-    constant SPI_CS_DELAY   : NATURAL := 5;
+    constant SPI_CS_DELAY   : NATURAL := 2;
     constant SPI_DATA_WIDTH : NATURAL := 16;
     constant COUNTER_WIDTH  : NATURAL := 8;
 

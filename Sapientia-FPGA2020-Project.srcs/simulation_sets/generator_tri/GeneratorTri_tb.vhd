@@ -48,6 +48,7 @@ architecture bench of GeneratorTri_tb is
           teta    : in STD_LOGIC_VECTOR(TETA_WIDTH - 1 downto 0);
           amp     : in STD_LOGIC_VECTOR(AMP_WIDTH - 1 downto 0);
           off     : in STD_LOGIC_VECTOR(OFF_WIDTH - 1 downto 0);
+          status: out STD_LOGIC;
           dout    : out STD_LOGIC_VECTOR (15 downto 0));
   end component;
 
@@ -62,6 +63,7 @@ architecture bench of GeneratorTri_tb is
   signal teta: STD_LOGIC_VECTOR(8 - 1 downto 0);
   signal amp: STD_LOGIC_VECTOR(4 - 1 downto 0);
   signal off: STD_LOGIC_VECTOR(16 - 1 downto 0);
+          signal status: STD_LOGIC;
   signal dout: STD_LOGIC_VECTOR (15 downto 0);
 
   constant clock_period: time := 10 ns;
@@ -80,6 +82,7 @@ begin
                                   teta       => teta,
                                   amp        => amp,
                                   off        => off,
+                                  status     => status,
                                   dout       => dout );
 
   stimulus: process
