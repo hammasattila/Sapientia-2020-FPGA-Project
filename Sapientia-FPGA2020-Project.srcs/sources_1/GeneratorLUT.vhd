@@ -58,7 +58,7 @@ begin
     ------ STATE
     StateRegister : process (src_clk, src_ce, reset)
     begin
-        if reset = RST then rState                              <= READY;
+        if reset = RST then rState                             <= READY;
         elsif src_ce = CE and rising_edge(src_clk) then rState <= rStateNext;
         end if;
     end process StateRegister;
@@ -66,19 +66,19 @@ begin
     StateLogic : process (rState, start)
     begin
         case (rState) is
-            when READY => if start = '1' then rStateNext <= SPEED_AMPLITUDE;
+        when READY => if start = '1' then rStateNext <= SPEED_AMPLITUDE;
             else rStateNext                              <= READY;
-        end if;
+            end if;
         when SPEED_AMPLITUDE => rStateNext <= PHASE_OFFSET;
         when PHASE_OFFSET    => rStateNext    <= MEM_PRINT;
         when MEM_PRINT       => rStateNext       <= FINISH;
         when FINISH          => rStateNext          <= SPEED_AMPLITUDE;
-    end case;
-end process StateLogic;
+        end case;
+    end process StateLogic;
 ------ COUNTER
 CounterRegister : process (src_clk, src_ce, reset)
 begin
-    if reset = RST then rCounter                              <= (others => '0');
+    if reset = RST then rCounter                             <= (others => '0');
     elsif src_ce = CE and rising_edge(src_clk) then rCounter <= rCounterNext;
     end if;
 end process CounterRegister;
@@ -88,7 +88,7 @@ with rState select rCounterNext <= STD_LOGIC_VECTOR(to_unsigned(to_integer(unsig
 ------ CÍM
 AddressRegister : process (src_clk, src_ce, reset)
 begin
-    if reset = RST then rAddress                              <= (others => '0');
+    if reset = RST then rAddress                             <= (others => '0');
     elsif src_ce = CE and rising_edge(src_clk) then rAddress <= rAddressNext;
     end if;
 end process AddressRegister;
@@ -100,7 +100,7 @@ with rState select rAddressNext <= STD_LOGIC_VECTOR(to_unsigned(to_integer(unsig
 ------ ADAT                                     
 DataRegister : process (src_clk, src_ce, reset)
 begin
-    if reset = RST then rData                              <= (others => '0');
+    if reset = RST then rData                             <= (others => '0');
     elsif src_ce = CE and rising_edge(src_clk) then rData <= rDataNext;
     end if;
 end process DataRegister;
@@ -112,7 +112,7 @@ with rState select rDataNext <= (DATA_WIDTH - 1 downto LUT_WIDTH => '0') & sinLU
 
 OutRegister : process (src_clk, src_ce, reset)
 begin
-    if reset = RST then rOut                              <= (others => 'Z');
+    if reset = RST then rOut                             <= (others => 'Z');
     elsif src_ce = CE and rising_edge(src_clk) then rOut <= rOutNext;
     end if;
 end process OutRegister;
