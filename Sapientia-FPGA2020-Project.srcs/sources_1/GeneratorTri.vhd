@@ -99,7 +99,7 @@ begin
 
     rCounterNext <= (others => '0') when rState = READY
         else STD_LOGIC_VECTOR(to_unsigned(to_integer(unsigned(rCounter)) + 1, rCounterNext'length)) when rState = CALC_PRINT and rI < rN - 1
-        else (others => '0') when rState = CALC_PRINT and rI = rN - 1
+        else (others => '0') when rState = CALC_PRINT and rI >= rN - 1
         else rCounter;
 
     ------ I
@@ -128,7 +128,7 @@ begin
         else STD_LOGIC_VECTOR(to_unsigned(to_integer(unsigned(rI)) * to_integer(unsigned(d1)), rDataNext'length)) when rState = CALC_PRINT and rPhase = UP
         -- else (rN - rI) * d2 when rState = READY and rPhase = DOWN
         else STD_LOGIC_VECTOR(to_unsigned((to_integer(unsigned(rN)) - to_integer(unsigned(rI))) * to_integer(unsigned(d2)), rDataNext'length)) when rState = CALC_PRINT and rPhase = DOWN
-        else (to_integer(UNSIGNED(amp)) - 1 downto 0 => '0') & rData(DATA_WIDTH - 1 downto to_integer(UNSIGNED(amp))) when rState = PHASE_AMPLITUDE
+        else STD_LOGIC_VECTOR(to_unsigned(to_integer(UNSIGNED(rData(DATA_WIDTH - 1 downto to_integer(UNSIGNED(amp))))), rDataNext'length)) when rState = PHASE_AMPLITUDE
         else STD_LOGIC_VECTOR(to_unsigned(to_integer(unsigned(rData)) + to_integer(signed(off)), rDataNext'length)) when rState = PHASE_OFFSET
         else rData;
 
