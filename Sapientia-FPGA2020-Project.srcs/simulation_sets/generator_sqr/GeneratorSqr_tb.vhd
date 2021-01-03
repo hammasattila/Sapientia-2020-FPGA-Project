@@ -34,7 +34,7 @@ architecture bench of GenertorSqr_tb is
       RST        : STD_LOGIC := '0';
       DATA_WIDTH : NATURAL   := 12;
       TETA_WIDTH : NATURAL   := 8;
-      AMP_WIDTH  : NATURAL   := 12;
+      AMP_WIDTH  : NATURAL   := 4;
       OFF_WIDTH  : NATURAL   := 12
       );
       port (
@@ -58,7 +58,7 @@ architecture bench of GenertorSqr_tb is
   signal k1: STD_LOGIC_VECTOR (7 downto 0);
   signal k2: STD_LOGIC_VECTOR (7 downto 0);
   signal teta: STD_LOGIC_VECTOR(7 downto 0);
-  signal amp: STD_LOGIC_VECTOR(11 downto 0);
+  signal amp: STD_LOGIC_VECTOR(3 downto 0);
   signal off: STD_LOGIC_VECTOR(11 downto 0);
   signal status: STD_LOGIC;
   signal dout: STD_LOGIC_VECTOR (11 downto 0);
@@ -89,7 +89,7 @@ begin
                         start<='0';
                         src_ce <='1';
                         teta <= STD_LOGIC_VECTOR(to_unsigned(0,8));
-                        amp <= STD_LOGIC_VECTOR(to_unsigned(64,12));
+                        amp <= STD_LOGIC_VECTOR(to_unsigned(0,4));
                         off <= STD_LOGIC_VECTOR(to_unsigned(72,12));
                         wait for 100 ns;
                         reset<='1';

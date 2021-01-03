@@ -66,12 +66,12 @@ begin
   begin
     -- Put initialisation code here
     src_ce <= '0';
-    reset  <= '1';
+    reset  <= '0';
     start  <= '0';
     data   <= (others => '0');
     wait for clock_period;
 
-    reset <= '0';
+    reset <= '1';
     wait for clock_period;
 
     src_ce <= '1';

@@ -120,56 +120,43 @@ begin
 
     DataRegister : process (src_clk, src_ce, reset)
     begin
-        if reset = RST then rData                               <= (others => '0');
-            rDataNext                                               <= (others => '0');
-        else if src_ce = CE and rising_edge(src_clk) then rData <= rDataNext;
+        if reset = RST then rData                             <= (others => '0');
+        elsif src_ce = CE and rising_edge(src_clk) then rData <= rDataNext;
         end if;
-        if src_ce = CE and falling_edge(src_clk) then if INIT_A = stateCurrent then rDataNext <= data;
-        elsif INIT_C = stateCurrent then rDataNext                                            <= rData(SPI_DATA_WIDTH - 2 downto 0) & rData(SPI_DATA_WIDTH - 1);
-        else rDataNext                                                                        <= rData;
+    end process DataRegister;
+
+    with stateCurrent select rDataNext <= data when INIT_A,
+        rData(SPI_DATA_WIDTH - 2 downto 0) & rData(SPI_DATA_WIDTH - 1) when INIT_C,
+        rData when others;
+
+    ResponseRegister : process (src_clk, src_ce, reset)
+    begin
+        if reset = RST then rRes                             <= (others => '0');
+        elsif src_ce = CE and rising_edge(src_clk) then rRes <= rResNext;
         end if;
-    end if;
-end if;
-end process DataRegister;
+    end process ResponseRegister;
 
---    with stateCurrent select rDataNext <= data when INIT_A,
---                                          rData(SPI_DATA_WIDTH - 2 downto 0) & rData(SPI_DATA_WIDTH - 1) when INIT_D,
---                                          rData when others;
+    with stateCurrent select rResNext <= (others => '0') when INIT_A,
+        rResNext(SPI_DATA_WIDTH - 2 downto 0) & MISO when CLK_L,
+        rRes(SPI_DATA_WIDTH - 2 downto 0) & rRes(SPI_DATA_WIDTH - 1) when INIT_D,
+        rRes when others;
 
-ResponseRegister : process (src_clk, src_ce, reset)
-begin
-    if reset = RST then rRes                               <= (others => '0');
-        rResNext                                               <= (others => '0');
-    else if src_ce = CE and rising_edge(src_clk) then rRes <= rResNext;
-    end if;
-    if src_ce = CE and falling_edge(src_clk) then if INIT_A = stateCurrent then rResNext <= (others => '0');
-    elsif CLK_L = stateCurrent then rResNext                                             <= rResNext(SPI_DATA_WIDTH - 1 downto 1) & MISO;
-    elsif INIT_D = stateCurrent then rResNext                                            <= rRes(SPI_DATA_WIDTH - 2 downto 0) & rRes(SPI_DATA_WIDTH - 1);
-    else rResNext                                                                        <= rResNext;
-    end if;
-end if;
-end if;
-end process ResponseRegister;
+    with stateCurrent select status <= '1' when FINISHED,
+        '0' when others;
 
---    with stateCurrent select rResNext <= (others => '0') when INIT_A,
---                                         rRes(SPI_DATA_WIDTH - 2 downto 0) & MISO when CLK_L,
---                                         rRes(SPI_DATA_WIDTH - 2 downto 0) & rRes(SPI_DATA_WIDTH - 1) when INIT_D,
---                                         rRes when others;
+    process (stateCurrent)
+    begin
+        if stateCurrent = FINISHED then response <= rRes;
+        end if;
+    end process;
 
-with stateCurrent select status <= '1' when FINISHED,
-    '0' when others;
+    with stateCurrent select SCK <= '0' when CLK_L | INIT_C,
+        '1' when others;
 
-process (stateCurrent)
-begin
-    if stateCurrent = FINISHED then response <= rRes;
-    end if;
-end process;
+    with stateCurrent select CS <= '0' when INIT_A | CS_L | INIT_B | CLK_L | INIT_C | CLK_H | INIT_D,
+        '1' when others;
 
-with stateCurrent select SCK <= '0' when CLK_L | INIT_C,
-    '1' when others;
+    with stateCurrent select MOSI <= '0' when READY,
+        rData(0) when others;
 
-with stateCurrent select CS <= '0' when INIT_A | CS_L | INIT_B | CLK_L | INIT_C | CLK_H | INIT_D,
-    '1' when others;
-
-with stateCurrent select MOSI <= '0' when READY,
-    rData(0) when others;
+end Behavioral;

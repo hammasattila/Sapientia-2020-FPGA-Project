@@ -3,111 +3,99 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="Generator_tb_behav.wdb" id="1">
+      <db_ref path="GeneratorTri_tb_behav.wdb" id="1">
          <top_modules>
-            <top_module name="Generator_tb" />
+            <top_module name="GeneratorTri_tb" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="1000001fs"></ZoomEndTime>
-      <Cursor1Time time="1000000fs"></Cursor1Time>
+      <ZoomEndTime time="10562916fs"></ZoomEndTime>
+      <Cursor1Time time="8001000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="223"></NameColumnWidth>
-      <ValueColumnWidth column_width="143"></ValueColumnWidth>
+      <ValueColumnWidth column_width="139"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="12" />
-   <wvobject type="logic" fp_name="/Generator_tb/src_clk">
+   <WVObjectSize size="17" />
+   <wvobject type="logic" fp_name="/GeneratorTri_tb/src_clk">
       <obj_property name="ElementShortName">src_clk</obj_property>
       <obj_property name="ObjectShortName">src_clk</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/Generator_tb/src_ce">
+   <wvobject type="logic" fp_name="/GeneratorTri_tb/src_ce">
       <obj_property name="ElementShortName">src_ce</obj_property>
       <obj_property name="ObjectShortName">src_ce</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/Generator_tb/reset">
+   <wvobject type="logic" fp_name="/GeneratorTri_tb/start">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/GeneratorTri_tb/reset">
       <obj_property name="ElementShortName">reset</obj_property>
       <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/GeneratorTri_tb/k1">
+      <obj_property name="ElementShortName">k1[7:0]</obj_property>
+      <obj_property name="ObjectShortName">k1[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/GeneratorTri_tb/k2">
+      <obj_property name="ElementShortName">k2[7:0]</obj_property>
+      <obj_property name="ObjectShortName">k2[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/GeneratorTri_tb/d1">
+      <obj_property name="ElementShortName">d1[7:0]</obj_property>
+      <obj_property name="ObjectShortName">d1[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/GeneratorTri_tb/d2">
+      <obj_property name="ElementShortName">d2[7:0]</obj_property>
+      <obj_property name="ObjectShortName">d2[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/GeneratorTri_tb/teta">
+      <obj_property name="ElementShortName">teta[7:0]</obj_property>
+      <obj_property name="ObjectShortName">teta[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/GeneratorTri_tb/amp">
+      <obj_property name="ElementShortName">amp[3:0]</obj_property>
+      <obj_property name="ObjectShortName">amp[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/GeneratorTri_tb/off">
+      <obj_property name="ElementShortName">off[15:0]</obj_property>
+      <obj_property name="ObjectShortName">off[15:0]</obj_property>
    </wvobject>
    <wvobject fp_name="divider10" type="divider">
       <obj_property name="label">DATA</obj_property>
       <obj_property name="DisplayName">label</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/Generator_tb/output">
-      <obj_property name="ElementShortName">output[15:0]</obj_property>
-      <obj_property name="ObjectShortName">output[15:0]</obj_property>
-      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
-      <obj_property name="CellHeight">100</obj_property>
-      <obj_property name="CustomSignalColor">#FFD700</obj_property>
+   <wvobject type="logic" fp_name="/GeneratorTri_tb/status">
+      <obj_property name="ElementShortName">status</obj_property>
+      <obj_property name="ObjectShortName">status</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/GeneratorTri_tb/dout">
+      <obj_property name="ElementShortName">dout[15:0]</obj_property>
+      <obj_property name="ObjectShortName">dout[15:0]</obj_property>
+      <obj_property name="CustomSignalColor">#008000</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
       <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
       <obj_property name="AnalogYRangeMin">0.000000</obj_property>
       <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
       <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
       <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
-      <obj_property name="AnalogHorizLine">127.000000</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
    </wvobject>
    <wvobject fp_name="divider8" type="divider">
       <obj_property name="label">DEBUG</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="BkColor">#FF0000</obj_property>
    </wvobject>
-   <wvobject type="other" fp_name="/Generator_tb/stop_the_clock">
+   <wvobject type="other" fp_name="/GeneratorTri_tb/stop_the_clock">
       <obj_property name="ElementShortName">stop_the_clock</obj_property>
       <obj_property name="ObjectShortName">stop_the_clock</obj_property>
-      <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject type="other" fp_name="/Generator_tb/clock_period">
+   <wvobject type="other" fp_name="/GeneratorTri_tb/clock_period">
       <obj_property name="ElementShortName">clock_period</obj_property>
       <obj_property name="ObjectShortName">clock_period</obj_property>
-      <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject type="other" fp_name="/Generator_tb/uut/rState">
-      <obj_property name="ElementShortName">rState</obj_property>
-      <obj_property name="ObjectShortName">rState</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/Generator_tb/uut/rCounter">
-      <obj_property name="ElementShortName">rCounter[4:0]</obj_property>
-      <obj_property name="ObjectShortName">rCounter[4:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
-      <obj_property name="CellHeight">100</obj_property>
-      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
-      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
-      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
-      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
-      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
-      <obj_property name="AnalogHorizLine">0.000000</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/Generator_tb/uut/rAddress">
-      <obj_property name="ElementShortName">rAddress[4:0]</obj_property>
-      <obj_property name="ObjectShortName">rAddress[4:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
-      <obj_property name="CellHeight">100</obj_property>
-      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
-      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
-      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
-      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
-      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
-      <obj_property name="AnalogHorizLine">0.000000</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/Generator_tb/uut/rData">
-      <obj_property name="ElementShortName">rData[15:0]</obj_property>
-      <obj_property name="ObjectShortName">rData[15:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
-      <obj_property name="CellHeight">100</obj_property>
-      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
-      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
-      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
-      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
-      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
-      <obj_property name="AnalogHorizLine">0.000000</obj_property>
    </wvobject>
 </wave_config>
