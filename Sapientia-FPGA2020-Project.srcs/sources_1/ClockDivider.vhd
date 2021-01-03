@@ -10,15 +10,16 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
+
 library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 use IEEE.NUMERIC_STD.all;
 
 entity ClockDivider is
     generic (
-    CE    : STD_LOGIC := '1';
-    RST    : STD_LOGIC := '0';
-    div : INTEGER := 2);
+        CE  : STD_LOGIC := '1';
+        RST : STD_LOGIC := '0';
+        div : INTEGER   := 2);
     port (
         src_clk : in STD_LOGIC;
         src_ce  : in STD_LOGIC;
@@ -36,7 +37,7 @@ begin
         if reset = RST then count := 0;
             clkNext <= '0';
         elsif src_ce = CE and rising_edge(src_clk) then count := count + 1;
-            if div = count then count := 0;
+            if div = count then count                             := 0;
                 clkNext <= not clkNext;
             end if;
         end if;

@@ -7,6 +7,6 @@
 !*.vhd
 !*.wcfg
 
-!*.drawio
+!Sapientia-FPGA2020-Project.docs/*.*
 !*.md
 !.gitignore

@@ -10,6 +10,7 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
+
 library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 use IEEE.NUMERIC_STD.all;
@@ -39,7 +40,7 @@ entity GeneratorLUT is
         amp     : in STD_LOGIC_VECTOR(AMP_WIDTH - 1 downto 0);
         off     : in STD_LOGIC_VECTOR(OFF_WIDTH - 1 downto 0);
         addr    : out STD_LOGIC_VECTOR(LUT_ADDRESS_WIDTH - 1 downto 0);
-        val     : in  STD_LOGIC_VECTOR(LUT_WIDTH - 1 downto 0);
+        val     : in STD_LOGIC_VECTOR(LUT_WIDTH - 1 downto 0);
         status  : out STD_LOGIC;
         output  : out STD_LOGIC_VECTOR(DATA_WIDTH - 1 downto 0));
 end GeneratorLUT;
@@ -65,15 +66,15 @@ begin
     StateLogic : process (rState, start)
     begin
         case (rState) is
-        when READY => if start = '1' then rStateNext <= SPEED_AMPLITUDE;
+            when READY => if start = '1' then rStateNext <= SPEED_AMPLITUDE;
             else rStateNext                              <= READY;
-            end if;
+        end if;
         when SPEED_AMPLITUDE => rStateNext <= PHASE_OFFSET;
         when PHASE_OFFSET    => rStateNext    <= MEM_PRINT;
         when MEM_PRINT       => rStateNext       <= FINISH;
         when FINISH          => rStateNext          <= SPEED_AMPLITUDE;
-        end case;
-    end process StateLogic;
+    end case;
+end process StateLogic;
 ------ COUNTER
 CounterRegister : process (src_clk, src_ce, reset)
 begin
@@ -106,7 +107,7 @@ end process DataRegister;
 
 -- (DATA_WIDTH - 1 downto LUT_WIDTH => '0') & 
 with rState select rDataNext <= val when MEM_PRINT,
---    STD_LOGIC_VECTOR(to_unsigned(to_integer(unsigned(rData)) * to_integer(unsigned(amp)), rDataNext'length)) when SPEED_AMPLITUDE,
+    --    STD_LOGIC_VECTOR(to_unsigned(to_integer(unsigned(rData)) * to_integer(unsigned(amp)), rDataNext'length)) when SPEED_AMPLITUDE,
     STD_LOGIC_VECTOR(to_unsigned(to_integer(UNSIGNED(rData(DATA_WIDTH - 1 downto to_integer(UNSIGNED(amp))))), rDataNext'length)) when SPEED_AMPLITUDE,
     STD_LOGIC_VECTOR(to_unsigned(to_integer(unsigned(rData)) + to_integer(signed(off)), rDataNext'length)) when PHASE_OFFSET,
     rData when others;
@@ -123,9 +124,9 @@ with rState select rOutNext <= rData when MEM_PRINT,
 
 with rState select status <= '1' when FINISH,
     '0' when others;
-    
+
 with rState select addr <= rAddress when MEM_PRINT,
-(others => '0') when others; 
+    (others => '0') when others;
 
 output <= rOut;
 end Behavioral;

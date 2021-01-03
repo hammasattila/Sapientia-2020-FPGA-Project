@@ -71,13 +71,13 @@ begin
                 else rStateNext                <= READY;
                 end if;
             when PHASE_AMPLITUDE =>
-            rStateNext <= PHASE_OFFSET;
-            when PHASE_OFFSET    =>
-            rStateNext    <= CALC_PRINT;
-            when CALC_PRINT      =>
-            rStateNext      <= FINISH;
-            when FINISH          =>
-             rStateNext          <= PHASE_AMPLITUDE;
+                rStateNext <= PHASE_OFFSET;
+            when PHASE_OFFSET =>
+                rStateNext <= CALC_PRINT;
+            when CALC_PRINT =>
+                rStateNext <= FINISH;
+            when FINISH =>
+                rStateNext <= PHASE_AMPLITUDE;
         end case;
     end process StateLogic;
 
@@ -121,7 +121,7 @@ begin
         end if;
     end process RegisterData;
 
-    rN <= k1+k2;
+    rN        <= k1 + k2;
 
     rDataNext <= (others => '0') when rState = READY
         -- else rI * d1 when rState = READY and rPhase = UP
@@ -138,8 +138,8 @@ begin
         if rising_edge(src_clk) then dout <= rData;
         end if;
     end process RegisterOut;
-    
+
     with rState select status <= '1' when FINISH,
-    '0' when others;
+        '0' when others;
 
 end Behavioral;

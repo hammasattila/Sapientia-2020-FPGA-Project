@@ -1,35 +1,29 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
+-- Company: Sapientia Hungarian University of Transylvania - Faculty of Technical and Human Sciences
+-- Engineer: Attila Hammas
+--
 -- Create Date: 01/02/2021 01:33:47 AM
--- Design Name: 
 -- Module Name: GenertorSqr - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
+-- Project Name:  Waweform generator
 -- 
--- Dependencies: 
--- 
--- Revision:
 -- Revision 0.01 - File Created
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
+
 library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 use IEEE.NUMERIC_STD.all;
 use IEEE.STD_LOGIC_UNSIGNED.all;
 
 entity GenertorSqr is
-generic (
-    CE         : STD_LOGIC := '1';
-    RST        : STD_LOGIC := '0';
-    DATA_WIDTH : NATURAL   := 12;
-    TETA_WIDTH : NATURAL   := 8;
-    AMP_WIDTH  : NATURAL   := 4;
-    OFF_WIDTH  : NATURAL   := 12
+    generic (
+        CE         : STD_LOGIC := '1';
+        RST        : STD_LOGIC := '0';
+        DATA_WIDTH : NATURAL   := 12;
+        TETA_WIDTH : NATURAL   := 8;
+        AMP_WIDTH  : NATURAL   := 4;
+        OFF_WIDTH  : NATURAL   := 12
     );
     port (
         src_clk : in STD_LOGIC;
@@ -41,7 +35,7 @@ generic (
         teta    : in STD_LOGIC_VECTOR(TETA_WIDTH - 1 downto 0);
         amp     : in STD_LOGIC_VECTOR(AMP_WIDTH - 1 downto 0);
         off     : in STD_LOGIC_VECTOR(OFF_WIDTH - 1 downto 0);
-        status: out STD_LOGIC;
+        status  : out STD_LOGIC;
         dout    : out STD_LOGIC_VECTOR (DATA_WIDTH - 1 downto 0));
 end GenertorSqr;
 
@@ -125,8 +119,8 @@ begin
 
     rDataNext <= (others => '0') when rState = READY
         -- else rI * d1 when rState = READY and rPhase = UP
-        else (others => '1') when rState = CALC_PRINT and rPhase = UP
-        else (others => '0') when rState = CALC_PRINT and rPhase = DOWN
+        else (others         => '1') when rState = CALC_PRINT and rPhase = UP
+        else (others         => '0') when rState = CALC_PRINT and rPhase = DOWN
         else STD_LOGIC_VECTOR(to_unsigned(to_integer(UNSIGNED(rData(DATA_WIDTH - 1 downto to_integer(UNSIGNED(amp))))), rDataNext'length)) when rState = PHASE_AMPLITUDE
         else STD_LOGIC_VECTOR(to_unsigned(to_integer(unsigned(rData)) + to_integer(signed(off)), rDataNext'length)) when rState = PHASE_OFFSET
         else rData;
@@ -137,7 +131,7 @@ begin
         if src_ce = CE and rising_edge(src_clk) and rState = CALC_PRINT then dout <= rData;
         end if;
     end process RegisterOut;
-    
+
     with rState select status <= '1' when FINISH,
-    '0' when others;
+        '0' when others;
 end Behavioral;
