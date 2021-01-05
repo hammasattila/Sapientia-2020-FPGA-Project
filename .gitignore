@@ -6,7 +6,16 @@
 !*.xpr
 !*.vhd
 !*.wcfg
+!.gitignore
 
+# Constraints
+!/*.srcs/*/*.xdc
+
+# Block designs
+!/*.srcs/*/bd/*/*.bd
+!/*.srcs/*/bd/*/*.xdc
+!/*.srcs/*/bd/*/*.bxml
+
+# Docs
 !Sapientia-FPGA2020-Project.docs/*.*
 !*.md
-!.gitignore

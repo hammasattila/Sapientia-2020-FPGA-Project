@@ -1,0 +1,318 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x0",
+      "device": "xc7s100fgga676-2",
+      "name": "design_1",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2019.2",
+      "validated": "true"
+    },
+    "design_tree": {
+      "clk_wiz_0": "",
+      "sim_clk_gen_0": "",
+      "vio_0": "",
+      "System_0": ""
+    },
+    "components": {
+      "clk_wiz_0": {
+        "vlnv": "xilinx.com:ip:clk_wiz:6.0",
+        "xci_name": "design_1_clk_wiz_0_1",
+        "parameters": {
+          "USE_LOCKED": {
+            "value": "false"
+          },
+          "USE_RESET": {
+            "value": "false"
+          }
+        }
+      },
+      "sim_clk_gen_0": {
+        "vlnv": "xilinx.com:ip:sim_clk_gen:1.0",
+        "xci_name": "design_1_sim_clk_gen_0_1",
+        "parameters": {
+          "RESET_POLARITY": {
+            "value": "ACTIVE_LOW"
+          }
+        }
+      },
+      "vio_0": {
+        "vlnv": "xilinx.com:ip:vio:3.0",
+        "xci_name": "design_1_vio_0_0",
+        "parameters": {
+          "C_NUM_PROBE_IN": {
+            "value": "3"
+          },
+          "C_NUM_PROBE_OUT": {
+            "value": "12"
+          },
+          "C_PROBE_OUT0_INIT_VAL": {
+            "value": "0x1"
+          },
+          "C_PROBE_OUT10_WIDTH": {
+            "value": "12"
+          },
+          "C_PROBE_OUT1_INIT_VAL": {
+            "value": "0x1"
+          },
+          "C_PROBE_OUT2_INIT_VAL": {
+            "value": "0x1"
+          },
+          "C_PROBE_OUT2_WIDTH": {
+            "value": "4"
+          },
+          "C_PROBE_OUT3_WIDTH": {
+            "value": "2"
+          },
+          "C_PROBE_OUT4_WIDTH": {
+            "value": "8"
+          },
+          "C_PROBE_OUT5_WIDTH": {
+            "value": "4"
+          },
+          "C_PROBE_OUT6_INIT_VAL": {
+            "value": "0x10"
+          },
+          "C_PROBE_OUT6_WIDTH": {
+            "value": "8"
+          },
+          "C_PROBE_OUT7_INIT_VAL": {
+            "value": "0x10"
+          },
+          "C_PROBE_OUT7_WIDTH": {
+            "value": "8"
+          },
+          "C_PROBE_OUT8_INIT_VAL": {
+            "value": "0x08"
+          },
+          "C_PROBE_OUT8_WIDTH": {
+            "value": "8"
+          },
+          "C_PROBE_OUT9_INIT_VAL": {
+            "value": "0x08"
+          },
+          "C_PROBE_OUT9_WIDTH": {
+            "value": "8"
+          }
+        }
+      },
+      "System_0": {
+        "vlnv": "xilinx.com:module_ref:System:1.0",
+        "xci_name": "design_1_System_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "System",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "src_clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "reset",
+                "value_src": "constant"
+              },
+              "CLK_DOMAIN": {
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              }
+            }
+          },
+          "src_ce": {
+            "direction": "I"
+          },
+          "reset": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "user_prop"
+              }
+            }
+          },
+          "start": {
+            "direction": "I"
+          },
+          "a": {
+            "direction": "I",
+            "left": "3",
+            "right": "0"
+          },
+          "s": {
+            "direction": "I",
+            "left": "1",
+            "right": "0"
+          },
+          "teta": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "amp": {
+            "direction": "I",
+            "left": "3",
+            "right": "0"
+          },
+          "k0": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "k1": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "d0": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "d1": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "off": {
+            "direction": "I",
+            "left": "11",
+            "right": "0"
+          },
+          "out_spi_sck": {
+            "direction": "O"
+          },
+          "out_spi_miso": {
+            "direction": "I"
+          },
+          "out_spi_mosi": {
+            "direction": "O"
+          },
+          "out_spi_cs": {
+            "direction": "O"
+          }
+        }
+      }
+    },
+    "nets": {
+      "sim_clk_gen_0_clk": {
+        "ports": [
+          "sim_clk_gen_0/clk",
+          "clk_wiz_0/clk_in1"
+        ]
+      },
+      "clk_wiz_0_clk_out1": {
+        "ports": [
+          "clk_wiz_0/clk_out1",
+          "vio_0/clk",
+          "System_0/src_clk"
+        ]
+      },
+      "System_0_out_spi_cs": {
+        "ports": [
+          "System_0/out_spi_cs",
+          "vio_0/probe_in2"
+        ]
+      },
+      "System_0_out_spi_sck": {
+        "ports": [
+          "System_0/out_spi_sck",
+          "vio_0/probe_in0"
+        ]
+      },
+      "vio_0_probe_out10": {
+        "ports": [
+          "vio_0/probe_out10",
+          "System_0/off"
+        ]
+      },
+      "vio_0_probe_out8": {
+        "ports": [
+          "vio_0/probe_out8",
+          "System_0/d0"
+        ]
+      },
+      "vio_0_probe_out6": {
+        "ports": [
+          "vio_0/probe_out6",
+          "System_0/k0"
+        ]
+      },
+      "vio_0_probe_out4": {
+        "ports": [
+          "vio_0/probe_out4",
+          "System_0/teta"
+        ]
+      },
+      "vio_0_probe_out2": {
+        "ports": [
+          "vio_0/probe_out2",
+          "System_0/a"
+        ]
+      },
+      "vio_0_probe_out0": {
+        "ports": [
+          "vio_0/probe_out0",
+          "System_0/src_ce"
+        ]
+      },
+      "System_0_out_spi_mosi": {
+        "ports": [
+          "System_0/out_spi_mosi",
+          "vio_0/probe_in1"
+        ]
+      },
+      "vio_0_probe_out11": {
+        "ports": [
+          "vio_0/probe_out11",
+          "System_0/out_spi_miso"
+        ]
+      },
+      "vio_0_probe_out9": {
+        "ports": [
+          "vio_0/probe_out9",
+          "System_0/d1"
+        ]
+      },
+      "vio_0_probe_out7": {
+        "ports": [
+          "vio_0/probe_out7",
+          "System_0/k1"
+        ]
+      },
+      "vio_0_probe_out5": {
+        "ports": [
+          "vio_0/probe_out5",
+          "System_0/amp"
+        ]
+      },
+      "vio_0_probe_out3": {
+        "ports": [
+          "vio_0/probe_out3",
+          "System_0/s"
+        ]
+      },
+      "vio_0_probe_out1": {
+        "ports": [
+          "vio_0/probe_out1",
+          "System_0/start"
+        ]
+      },
+      "sim_clk_gen_0_sync_rst": {
+        "ports": [
+          "sim_clk_gen_0/sync_rst",
+          "System_0/reset"
+        ]
+      }
+    }
+  }
+}

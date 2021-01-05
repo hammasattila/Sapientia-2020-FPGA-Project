@@ -18,8 +18,6 @@ use IEEE.STD_LOGIC_UNSIGNED.all;
 
 entity System is
   generic (
-    CE                : STD_LOGIC := '1';
-    RST               : STD_LOGIC := '0';
     DATA_WIDTH        : NATURAL   := 12;
     A_WIDTH           : NATURAL   := 4;
     TETA_WIDTH        : NATURAL   := 8;
@@ -50,7 +48,8 @@ entity System is
 end System;
 
 architecture Behavioral of System is
-
+  constant CE  : STD_LOGIC := '1';
+  constant RST : STD_LOGIC := '0';
   -- sinLUT az generálva
   constant LUT_SIZE  : NATURAL := 256;
   constant LUT_WIDTH : NATURAL := 12;

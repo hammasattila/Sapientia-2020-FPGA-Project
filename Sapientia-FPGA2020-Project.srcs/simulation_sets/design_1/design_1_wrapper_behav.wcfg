@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="design_1_wrapper_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="design_1_wrapper" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="1000000000fs"></ZoomEndTime>
+      <Cursor1Time time="1000000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="223"></NameColumnWidth>
+      <ValueColumnWidth column_width="123"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="25" />
+   <wvobject fp_name="divider68" type="divider">
+      <obj_property name="label">INPUT</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">#008000</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/design_1_wrapper/design_1_i/System_0/src_clk">
+      <obj_property name="ElementShortName">src_clk</obj_property>
+      <obj_property name="ObjectShortName">src_clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/design_1_wrapper/design_1_i/System_0/src_ce">
+      <obj_property name="ElementShortName">src_ce</obj_property>
+      <obj_property name="ObjectShortName">src_ce</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/design_1_wrapper/design_1_i/System_0/reset">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/design_1_wrapper/design_1_i/System_0/start">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/design_1_wrapper/design_1_i/System_0/a">
+      <obj_property name="ElementShortName">a[3:0]</obj_property>
+      <obj_property name="ObjectShortName">a[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/design_1_wrapper/design_1_i/System_0/s">
+      <obj_property name="ElementShortName">s[1:0]</obj_property>
+      <obj_property name="ObjectShortName">s[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/design_1_wrapper/design_1_i/System_0/teta">
+      <obj_property name="ElementShortName">teta[7:0]</obj_property>
+      <obj_property name="ObjectShortName">teta[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/design_1_wrapper/design_1_i/System_0/amp">
+      <obj_property name="ElementShortName">amp[3:0]</obj_property>
+      <obj_property name="ObjectShortName">amp[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/design_1_wrapper/design_1_i/System_0/k0">
+      <obj_property name="ElementShortName">k0[7:0]</obj_property>
+      <obj_property name="ObjectShortName">k0[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/design_1_wrapper/design_1_i/System_0/k1">
+      <obj_property name="ElementShortName">k1[7:0]</obj_property>
+      <obj_property name="ObjectShortName">k1[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/design_1_wrapper/design_1_i/System_0/d0">
+      <obj_property name="ElementShortName">d0[7:0]</obj_property>
+      <obj_property name="ObjectShortName">d0[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/design_1_wrapper/design_1_i/System_0/d1">
+      <obj_property name="ElementShortName">d1[7:0]</obj_property>
+      <obj_property name="ObjectShortName">d1[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/design_1_wrapper/design_1_i/System_0/off">
+      <obj_property name="ElementShortName">off[11:0]</obj_property>
+      <obj_property name="ObjectShortName">off[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider28" type="divider">
+      <obj_property name="label">DEBUG</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">#FF0000</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/design_1_wrapper/design_1_i/System_0/inst/clkd/div_clk">
+      <obj_property name="ElementShortName">div_clk</obj_property>
+      <obj_property name="ObjectShortName">div_clk</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/design_1_wrapper/design_1_i/System_0/inst/genc/rState">
+      <obj_property name="ElementShortName">rState</obj_property>
+      <obj_property name="ObjectShortName">rState</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/design_1_wrapper/design_1_i/System_0/inst/gent/rState">
+      <obj_property name="ElementShortName">rState</obj_property>
+      <obj_property name="ObjectShortName">rState</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/design_1_wrapper/design_1_i/System_0/inst/gens/rState">
+      <obj_property name="ElementShortName">rState</obj_property>
+      <obj_property name="ObjectShortName">rState</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/design_1_wrapper/design_1_i/System_0/inst/spic/stateCurrent">
+      <obj_property name="ElementShortName">stateCurrent</obj_property>
+      <obj_property name="ObjectShortName">stateCurrent</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/design_1_wrapper/design_1_i/System_0/inst/gen_data">
+      <obj_property name="ElementShortName">gen_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">gen_data[15:0]</obj_property>
+      <obj_property name="CellHeight">256</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider26" type="divider">
+      <obj_property name="label">OUTPUT</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/design_1_wrapper/design_1_i/System_0_out_spi_cs">
+      <obj_property name="ElementShortName">System_0_out_spi_cs</obj_property>
+      <obj_property name="ObjectShortName">System_0_out_spi_cs</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/design_1_wrapper/design_1_i/System_0_out_spi_mosi">
+      <obj_property name="ElementShortName">System_0_out_spi_mosi</obj_property>
+      <obj_property name="ObjectShortName">System_0_out_spi_mosi</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/design_1_wrapper/design_1_i/System_0_out_spi_sck">
+      <obj_property name="ElementShortName">System_0_out_spi_sck</obj_property>
+      <obj_property name="ObjectShortName">System_0_out_spi_sck</obj_property>
+   </wvobject>
+</wave_config>

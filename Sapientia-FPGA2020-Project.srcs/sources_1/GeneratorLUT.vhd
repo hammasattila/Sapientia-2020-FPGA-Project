@@ -63,7 +63,7 @@ begin
         end if;
     end process StateRegister;
 
-    StateLogic : process (rState, start)
+    StateLogic : process (start, rState)
     begin
         case (rState) is
             when READY => if start = '1' then rStateNext <= SPEED_AMPLITUDE;
